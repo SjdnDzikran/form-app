@@ -95,8 +95,6 @@ class _LabeledDateFieldState extends State<LabeledDateField> {
 
     // Unfocus again after the picker is closed to prevent keyboard reappearing
     // on the previously focused text field.
-    FocusScope.of(context).unfocus();
-
     // Check if a date was actually picked and it's different
     if (picked != null && picked != _selectedDate) {
       // No need for another mounted check here as setState does it internally,

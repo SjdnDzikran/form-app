@@ -15,16 +15,21 @@ class CommonLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: pagePadding, // Apply standard padding
-          child: child, // Display the page-specific content
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus(); // Dismiss keyboard on tap outside
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Padding(
+            padding: pagePadding,
+            child: child,
+          ),
         ),
+        // You can add other Scaffold elements here if needed globally,
+        // like a FloatingActionButton, BottomNavigationBar, Drawer, etc.
       ),
-      // You can add other Scaffold elements here if needed globally,
-      // like a FloatingActionButton, BottomNavigationBar, Drawer, etc.
     );
   }
 }
