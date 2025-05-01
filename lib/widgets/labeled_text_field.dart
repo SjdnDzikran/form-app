@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart'; // Import for input formatters
+import 'package:form_app/statics/app_styles.dart';
 
-class LabeledTextField extends StatelessWidget {
+class LabeledTextField extends StatefulWidget {
   final String label;
   final String hintText;
   final TextEditingController? controller; // Allow passing a controller
@@ -10,29 +11,9 @@ class LabeledTextField extends StatelessWidget {
   final ValueChanged<String>? onChanged; // Callback for changes
   final FormFieldValidator<String>? validator; // For form validation
   final int? maxLines;
-
-  // Define styles and colors centrally or pass them in if needed
-  static const Color borderColor = Color(0xFFC28CFF);
-  static const Color labelTextColor = Colors.black87;
-  static const Color hintTextColor = Color(0xFFCBCBCB);
-
-  static final TextStyle labelStyle = GoogleFonts.rubik(
-    fontSize: 20.0,
-    fontWeight: FontWeight.w300,
-    color: labelTextColor,
-  );
-
-  static final TextStyle inputTextStyling = GoogleFonts.rubik(
-    fontSize: 16.0,
-    color: Colors.black,
-    fontWeight: FontWeight.w400,
-  );
-
-   static final TextStyle hintTextStyling = GoogleFonts.rubik(
-    fontSize: 16.0,
-    color: hintTextColor,
-    fontWeight: FontWeight.w400,
-  );
+  final FocusNode? focusNode; // Optional focus node
+  final bool formSubmitted; // Add formSubmitted parameter
+  final String? initialValue; // Add initialValue parameter
 
   const LabeledTextField({
     super.key,
@@ -44,27 +25,67 @@ class LabeledTextField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.maxLines = 1, // Default to single line
+    this.focusNode, // Accept optional focus node
+    this.formSubmitted = false, // Default to false
+    this.initialValue, // Accept initialValue
   });
+
+  @override
+  State<LabeledTextField> createState() => _LabeledTextFieldState();
+}
+
+class _LabeledTextFieldState extends State<LabeledTextField> {
+  final _formFieldKey = GlobalKey<FormFieldState>(); // Key for managing form field state
+  late TextEditingController _internalController; // Internal controller
+
+  @override
+  void initState() {
+    super.initState();
+    // Use the provided controller or create an internal one
+    _internalController = widget.controller ?? TextEditingController(text: widget.initialValue);
+  }
+
+  @override
+  void dispose() {
+    // Dispose the internal controller if it was created
+    if (widget.controller == null) {
+      _internalController.dispose();
+    }
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: labelStyle),
+        Text(widget.label, style: labelStyle),
         const SizedBox(height: 8.0), // Consistent spacing
         TextFormField( // Use TextFormField for validation integration
-          controller: controller,
-          keyboardType: keyboardType,
-          obscureText: obscureText,
-          onChanged: onChanged,
-          validator: validator,
-          maxLines: maxLines,
+          key: _formFieldKey, // Assign the key
+          controller: _internalController, // Use the internal controller
+          keyboardType: widget.keyboardType,
+          obscureText: widget.obscureText,
+          onChanged: (value) {
+            // Call the original onChanged callback
+            widget.onChanged?.call(value);
+            // Trigger validation if the form has been submitted
+            if (widget.formSubmitted) {
+              _formFieldKey.currentState?.validate();
+            }
+          },
+          validator: widget.validator,
+          maxLines: widget.maxLines,
           style: inputTextStyling,
+          focusNode: widget.focusNode, // Pass the focus node to TextFormField
+          inputFormatters: widget.keyboardType == TextInputType.number
+              ? [_ThousandsSeparatorInputFormatter()] // Apply formatter for numbers
+              : null, // No formatter for other types
           decoration: InputDecoration(
-            hintText: hintText,
+            hintText: widget.hintText,
             hintStyle: hintTextStyling,
             contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            isDense: true, // Make the input decorator more compact
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: const BorderSide(color: borderColor, width: 1.5),
@@ -80,11 +101,11 @@ class LabeledTextField extends StatelessWidget {
             // Add error border style if needed based on validation feedback
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
-              borderSide: const BorderSide(color: Colors.red, width: 1.5),
+              borderSide: const BorderSide(color: errorBorderColor, width: 1.5),
             ),
              focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
-              borderSide: const BorderSide(color: Colors.red, width: 2.0),
+              borderSide: const BorderSide(color: errorBorderColor, width: 2.0),
             ),
           ),
         ),
@@ -92,6 +113,48 @@ class LabeledTextField extends StatelessWidget {
         // will have its own top label and spacing.
         // Add if separating from non-LabeledTextField widgets
       ],
+    );
+  }
+}
+
+// Custom TextInputFormatter for thousands separation
+class _ThousandsSeparatorInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    // Allow empty string or just a dot
+    if (newValue.text.isEmpty || newValue.text == '.') {
+      return newValue;
+    }
+
+    // Remove existing dots for parsing
+    String cleanedText = newValue.text.replaceAll('.', '');
+
+    // Parse as integer (or double if needed)
+    int? value = int.tryParse(cleanedText);
+
+    if (value == null) {
+      // If parsing fails, return the old value to prevent invalid input
+      return oldValue;
+    }
+
+    // Format the number with thousands separators
+    String formattedText = value.toString().replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+      (Match m) => '${m[1]}.',
+    );
+
+    // Calculate the new cursor position
+    TextSelection newSelection = newValue.selection.copyWith(
+      baseOffset: formattedText.length,
+      extentOffset: formattedText.length,
+    );
+
+    return TextEditingValue(
+      text: formattedText,
+      selection: newSelection,
     );
   }
 }
