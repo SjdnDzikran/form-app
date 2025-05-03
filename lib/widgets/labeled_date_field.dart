@@ -11,6 +11,7 @@ class LabeledDateField extends StatefulWidget {
   final FocusNode? focusNode; // Optional focus node
   final FormFieldValidator<DateTime?>? validator; // Optional validator
   final bool formSubmitted; // Add formSubmitted parameter
+  final DateTime? lastDate; // Add lastDate parameter
 
   // --- End Styles ---
 
@@ -23,6 +24,7 @@ class LabeledDateField extends StatefulWidget {
     this.focusNode, // Accept optional focus node
     this.validator, // Accept optional validator
     this.formSubmitted = false, // Default to false
+    this.lastDate, // Accept optional lastDate
   });
 
   @override
@@ -76,7 +78,7 @@ class _LabeledDateFieldState extends State<LabeledDateField> {
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
       firstDate: DateTime(2000), // Sensible default range start
-      lastDate: DateTime.now(), // Restrict to today's date
+      lastDate: widget.lastDate ?? DateTime.now(), // Use the provided lastDate or default to today
       builder: (BuildContext context, Widget? child) {
         return Theme(
           data: ThemeData(
@@ -189,7 +191,7 @@ class _LabeledDateFieldState extends State<LabeledDateField> {
                           : selectedDateTextStyle.copyWith(color: selectedDateColor), // Explicitly set color
                     ),
                     // --- Dropdown Icon ---
-                    const Icon(Icons.arrow_drop_down, color: iconColor), // Access iconColor from AppStyles
+                    Icon(Icons.arrow_drop_down, color: field.hasError ? errorBorderColor : iconColor), // Access iconColor from AppStyles
                   ],
                 ),
               ),

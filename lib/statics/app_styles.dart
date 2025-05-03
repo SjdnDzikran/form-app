@@ -12,6 +12,7 @@ const Color selectedDateColor = Color(
 ); // Specific selected date color
 
 const Color iconColor = borderColor; // Color for the dropdown icon
+const Color pageNumberColor = Color(0xFFF4622F); // Hex color #F4622F
 
 // Error Color
 const Color errorBorderColor = Color(0xFFE24717);
@@ -28,6 +29,20 @@ const Color buttonTextColor = Colors.white;
 const Color toggleOptionSelectedLengkapColor = Color(0xFF30B6ED);
 const Color toggleOptionSelectedTidakColor = Color(0xFFFF80B4);
 
+// Numbered Button Colors
+const Map<int, Color> numberedButtonColors = {
+  1: Color(0xFFF14091),
+  2: Color(0xFFEE6F76),
+  3: Color(0xFFEC9562),
+  4: Color(0xFFEAAA55),
+  5: Color(0xFFE8D23E),
+  6: Color(0xFFD8DA3D),
+  7: Color(0xFFCCD941),
+  8: Color(0xFFB9D747),
+  9: Color(0xFFA8D64E),
+  10: Color(0xFF8CD357),
+};
+
 // Text Styles
 final TextStyle labelStyle = GoogleFonts.rubik(
   fontSize: 20.0,
@@ -39,6 +54,18 @@ final TextStyle hintTextStyle = GoogleFonts.rubik(
   fontSize: 16.0,
   color: hintTextColor,
   fontWeight: FontWeight.w400,
+);
+
+final TextStyle pageTitleStyle = GoogleFonts.rubik(
+  fontSize: 40.0,
+  fontWeight: FontWeight.w500,
+  color: labelTextColor, // Assuming page title color is the same as label text color
+);
+
+final TextStyle pageNumberStyle = GoogleFonts.rubik(
+  fontSize: 48,
+  color: pageNumberColor,
+  fontWeight: FontWeight.w300,
 );
 
 // Toggle Option Text Styles
@@ -69,5 +96,11 @@ final TextStyle inputTextStyling = GoogleFonts.rubik(
 final TextStyle hintTextStyling = GoogleFonts.rubik(
   fontSize: 16.0,
   color: hintTextColor,
+  fontWeight: FontWeight.w400,
+);
+
+final TextStyle priceTextStyle = GoogleFonts.rubik(
+  fontSize: 16.0,
+  color: Color(0xFF141414), // Hex color #FF141414
   fontWeight: FontWeight.w400,
 );

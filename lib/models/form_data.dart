@@ -29,6 +29,33 @@ class FormData {
   String? noRangka;
   String? noMesin;
 
+  // New fields for Page Four
+  String? indikasiTabrakan;
+  String? indikasiBanjir;
+  String? indikasiOdometerReset;
+
+  // New fields for Page Four text fields
+  String? posisiBan;
+  String? merk;
+  String? tipeVelg;
+  String? ketebalan;
+
+  // New fields for inspection results
+  int? interiorSelectedIndex;
+  int? eksteriorSelectedIndex;
+  int? kakiKakiSelectedIndex;
+  int? mesinSelectedIndex;
+  int? penilaianKeseluruhanSelectedIndex;
+
+  // NEW: Fields for ExpandableTextField data (as List<String>)
+  List<String> keteranganInterior;
+  List<String> keteranganEksterior;
+  List<String> keteranganKakiKaki;
+  List<String> keteranganMesin;
+  List<String> deskripsiKeseluruhan;
+
+  // New field for repair estimations
+  List<Map<String, String>> repairEstimations;
 
   FormData({
     this.namaInspektor = '',
@@ -55,7 +82,31 @@ class FormData {
     this.toolkit,
     this.noRangka,
     this.noMesin,
-  });
+    this.indikasiTabrakan,
+    this.indikasiBanjir,
+    this.indikasiOdometerReset,
+    this.posisiBan,
+    this.merk,
+    this.tipeVelg,
+    this.ketebalan,
+    this.interiorSelectedIndex,
+    this.eksteriorSelectedIndex,
+    this.kakiKakiSelectedIndex,
+    this.mesinSelectedIndex,
+    this.penilaianKeseluruhanSelectedIndex,
+    List<String>? keteranganInterior,
+    List<String>? keteranganEksterior,
+    List<String>? keteranganKakiKaki,
+    List<String>? keteranganMesin,
+    List<String>? deskripsiKeseluruhan,
+    List<Map<String, String>>? repairEstimations,
+
+  }) : keteranganEksterior = keteranganEksterior ?? [],
+       keteranganInterior = keteranganInterior ?? [],
+       keteranganKakiKaki = keteranganKakiKaki ?? [],
+       keteranganMesin = keteranganMesin ?? [],
+       deskripsiKeseluruhan = deskripsiKeseluruhan ?? [],
+       repairEstimations = repairEstimations ?? [];
 
   // Add methods to update data if needed, or update directly
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // Import for input formatters
 import 'package:form_app/statics/app_styles.dart';
+import 'package:form_app/formatters/thousands_separator_input_formatter.dart'; // Import thousands separator formatter
 
 class LabeledTextField extends StatefulWidget {
   final String label;
@@ -14,6 +14,9 @@ class LabeledTextField extends StatefulWidget {
   final FocusNode? focusNode; // Optional focus node
   final bool formSubmitted; // Add formSubmitted parameter
   final String? initialValue; // Add initialValue parameter
+  final bool useThousandsSeparator; // Add parameter to control thousands separator
+  final String? prefixText; // Add prefixText parameter
+  final String? suffixText; // Add suffixText parameter
 
   const LabeledTextField({
     super.key,
@@ -28,6 +31,9 @@ class LabeledTextField extends StatefulWidget {
     this.focusNode, // Accept optional focus node
     this.formSubmitted = false, // Default to false
     this.initialValue, // Accept initialValue
+    this.useThousandsSeparator = true, // Default to true
+    this.prefixText, // Accept prefixText
+    this.suffixText, // Accept suffixText
   });
 
   @override
@@ -78,14 +84,16 @@ class _LabeledTextFieldState extends State<LabeledTextField> {
           maxLines: widget.maxLines,
           style: inputTextStyling,
           focusNode: widget.focusNode, // Pass the focus node to TextFormField
-          inputFormatters: widget.keyboardType == TextInputType.number
-              ? [_ThousandsSeparatorInputFormatter()] // Apply formatter for numbers
-              : null, // No formatter for other types
+          textCapitalization: TextCapitalization.sentences, // Auto-capitalize the first letter
+          inputFormatters: widget.keyboardType == TextInputType.number && widget.useThousandsSeparator
+              ? [ThousandsSeparatorInputFormatter()] // Apply formatter for numbers if enabled
+              : null, // No formatter for other types or if disabled
           decoration: InputDecoration(
             hintText: widget.hintText,
             hintStyle: hintTextStyling,
-            contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+            contentPadding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0), // Keep original padding
             isDense: true, // Make the input decorator more compact
+            alignLabelWithHint: true, // Align hint text with label
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: const BorderSide(color: borderColor, width: 1.5),
@@ -107,54 +115,30 @@ class _LabeledTextFieldState extends State<LabeledTextField> {
               borderRadius: BorderRadius.circular(8.0),
               borderSide: const BorderSide(color: errorBorderColor, width: 2.0),
             ),
+            prefix: widget.prefixText != null
+                ? Padding(
+                    padding: const EdgeInsets.only(right: 8.0), // Add padding after the prefix
+                    child: Text(
+                      widget.prefixText!,
+                      style: hintTextStyle, // Use the same style as input text
+                    ),
+                  )
+                : null,
+            suffix: widget.suffixText != null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 8.0), // Add padding before the suffix
+                    child: Text(
+                      widget.suffixText!,
+                      style: hintTextStyle, // Use the same style as hint text
+                    ),
+                  )
+                : null,
           ),
         ),
         // No SizedBox needed here usually, as the next LabeledTextField
         // will have its own top label and spacing.
         // Add if separating from non-LabeledTextField widgets
       ],
-    );
-  }
-}
-
-// Custom TextInputFormatter for thousands separation
-class _ThousandsSeparatorInputFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-    TextEditingValue oldValue,
-    TextEditingValue newValue,
-  ) {
-    // Allow empty string or just a dot
-    if (newValue.text.isEmpty || newValue.text == '.') {
-      return newValue;
-    }
-
-    // Remove existing dots for parsing
-    String cleanedText = newValue.text.replaceAll('.', '');
-
-    // Parse as integer (or double if needed)
-    int? value = int.tryParse(cleanedText);
-
-    if (value == null) {
-      // If parsing fails, return the old value to prevent invalid input
-      return oldValue;
-    }
-
-    // Format the number with thousands separators
-    String formattedText = value.toString().replaceAllMapped(
-      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-      (Match m) => '${m[1]}.',
-    );
-
-    // Calculate the new cursor position
-    TextSelection newSelection = newValue.selection.copyWith(
-      baseOffset: formattedText.length,
-      extentOffset: formattedText.length,
-    );
-
-    return TextEditingValue(
-      text: formattedText,
-      selection: newSelection,
     );
   }
 }

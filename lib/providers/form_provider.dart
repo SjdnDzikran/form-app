@@ -100,6 +100,81 @@ class FormNotifier extends StateNotifier<FormData> {
   void updateNoMesin(String? value) {
     state = state.copyWith(noMesin: value);
   }
+
+  // New update methods for Page Four
+  void updateIndikasiTabrakan(String? value) {
+    state = state.copyWith(indikasiTabrakan: value);
+  }
+
+  void updateIndikasiBanjir(String? value) {
+    state = state.copyWith(indikasiBanjir: value);
+  }
+
+  void updateIndikasiOdometerReset(String? value) {
+    state = state.copyWith(indikasiOdometerReset: value);
+  }
+
+  void updatePosisiBan(String? value) {
+    state = state.copyWith(posisiBan: value);
+  }
+
+  void updateMerk(String? value) {
+    state = state.copyWith(merk: value);
+  }
+
+  void updateTipeVelg(String? value) {
+    state = state.copyWith(tipeVelg: value);
+  }
+
+  void updateKetebalan(String? value) {
+    state = state.copyWith(ketebalan: value);
+  }
+
+  // New update methods for selected indices
+  void updateInteriorSelectedIndex(int index) {
+    state = state.copyWith(interiorSelectedIndex: index);
+  }
+
+  void updateEksteriorSelectedIndex(int index) {
+    state = state.copyWith(eksteriorSelectedIndex: index);
+  }
+
+  void updateKakiKakiSelectedIndex(int index) {
+    state = state.copyWith(kakiKakiSelectedIndex: index);
+  }
+
+  void updateMesinSelectedIndex(int index) {
+    state = state.copyWith(mesinSelectedIndex: index);
+  }
+
+  void updatePenilaianKeseluruhanSelectedIndex(int index) {
+    state = state.copyWith(penilaianKeseluruhanSelectedIndex: index);
+  }
+
+  // NEW: Update methods for ExpandableTextField data
+  void updateKeteranganInterior(List<String> lines) {
+    state = state.copyWith(keteranganInterior: lines);
+  }
+
+  void updateKeteranganEksterior(List<String> lines) {
+    state = state.copyWith(keteranganEksterior: lines);
+  }
+
+  void updateKeteranganKakiKaki(List<String> lines) {
+    state = state.copyWith(keteranganKakiKaki: lines);
+  }
+
+  void updateKeteranganMesin(List<String> lines) {
+    state = state.copyWith(keteranganMesin: lines);
+  }
+
+  void updateDeskripsiKeseluruhan(List<String> lines) {
+    state = state.copyWith(deskripsiKeseluruhan: lines);
+  }
+
+  void updateRepairEstimations(List<Map<String, String>> estimations) {
+    state = state.copyWith(repairEstimations: estimations);
+  }
 }
 
 final formProvider = StateNotifierProvider<FormNotifier, FormData>((ref) {
@@ -132,6 +207,24 @@ extension on FormData {
     String? toolkit,
     String? noRangka,
     String? noMesin,
+    String? indikasiTabrakan,
+    String? indikasiBanjir,
+    String? indikasiOdometerReset,
+    String? posisiBan,
+    String? merk,
+    String? tipeVelg,
+    String? ketebalan,
+    int? interiorSelectedIndex,
+    int? eksteriorSelectedIndex,
+    int? kakiKakiSelectedIndex,
+    int? mesinSelectedIndex,
+    int? penilaianKeseluruhanSelectedIndex,
+    List<String>? keteranganInterior,
+    List<String>? keteranganEksterior,
+    List<String>? keteranganKakiKaki,
+    List<String>? keteranganMesin,
+    List<String>? deskripsiKeseluruhan,
+    List<Map<String, String>>? repairEstimations,
   }) {
     return FormData(
       namaInspektor: namaInspektor ?? this.namaInspektor,
@@ -158,6 +251,24 @@ extension on FormData {
       toolkit: toolkit ?? this.toolkit,
       noRangka: noRangka ?? this.noRangka,
       noMesin: noMesin ?? this.noMesin,
+      indikasiTabrakan: indikasiTabrakan ?? this.indikasiTabrakan,
+      indikasiBanjir: indikasiBanjir ?? this.indikasiBanjir,
+      indikasiOdometerReset: indikasiOdometerReset ?? this.indikasiOdometerReset,
+      posisiBan: posisiBan ?? this.posisiBan,
+      merk: merk ?? this.merk,
+      tipeVelg: tipeVelg ?? this.tipeVelg,
+      ketebalan: ketebalan ?? this.ketebalan,
+      interiorSelectedIndex: interiorSelectedIndex ?? this.interiorSelectedIndex,
+      eksteriorSelectedIndex: eksteriorSelectedIndex ?? this.eksteriorSelectedIndex,
+      kakiKakiSelectedIndex: kakiKakiSelectedIndex ?? this.kakiKakiSelectedIndex,
+      mesinSelectedIndex: mesinSelectedIndex ?? this.mesinSelectedIndex,
+      penilaianKeseluruhanSelectedIndex: penilaianKeseluruhanSelectedIndex ?? this.penilaianKeseluruhanSelectedIndex,
+      keteranganInterior: keteranganInterior ?? this.keteranganInterior,
+      keteranganEksterior: keteranganEksterior ?? this.keteranganEksterior,
+      keteranganKakiKaki: keteranganKakiKaki ?? this.keteranganKakiKaki,
+      keteranganMesin: keteranganMesin ?? this.keteranganMesin,
+      deskripsiKeseluruhan: deskripsiKeseluruhan ?? this.deskripsiKeseluruhan,
+      repairEstimations: repairEstimations ?? this.repairEstimations,
     );
   }
 }
