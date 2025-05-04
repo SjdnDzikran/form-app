@@ -88,7 +88,7 @@ class _ToggleableNumberedButtonListState extends State<ToggleableNumberedButtonL
                     width: 2,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                 ),
               ),
@@ -101,16 +101,16 @@ class _ToggleableNumberedButtonListState extends State<ToggleableNumberedButtonL
             const Spacer(),
              if (!_isEnabled)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                   decoration: BoxDecoration(
                     color: toggleOptionSelectedTidakColor,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: Text(
                     'Tidak ada',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 12,
+                      fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
