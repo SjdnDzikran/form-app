@@ -34,7 +34,7 @@ class _NumberedButtonListState extends State<NumberedButtonList> {
           mainAxisAlignment: MainAxisAlignment.spaceAround, // Distribute space around the buttons
           children: List.generate(widget.count, (index) {
             final itemNumber = index + 1;
-            final isSelected = index == widget.selectedIndex;
+            final isSelected = itemNumber == widget.selectedIndex;
             return Expanded( // Use Expanded to make buttons take equal space
               child: GestureDetector(
                 onTap: () => widget.onItemSelected(index + 1),
@@ -46,8 +46,8 @@ class _NumberedButtonListState extends State<NumberedButtonList> {
                     color: isSelected ? numberedButtonColors[itemNumber] : Colors.white,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: widget.selectedIndex != -1 && widget.selectedIndex + 1 <= numberedButtonColors.length
-                          ? numberedButtonColors[widget.selectedIndex + 1]!
+                      color: widget.selectedIndex != -1 && widget.selectedIndex <= numberedButtonColors.length
+                          ? numberedButtonColors[widget.selectedIndex]!
                           : toggleOptionSelectedLengkapColor, // Default color if no button is selected or index is out of bounds
                       width: 2,
                     ),

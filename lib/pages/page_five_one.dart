@@ -44,7 +44,7 @@ class _PageFiveOneState extends State<PageFiveOne> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  PageNumber(data: '5'),
+                  PageNumber(data: '5/9'),
                   const SizedBox(height: 8.0),
                   PageTitle(data: 'Page Five - Part 1'), // Placeholder Title
                   const SizedBox(height: 24.0),
