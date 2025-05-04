@@ -34,11 +34,13 @@ class PageFiveFive extends StatelessWidget {
                       );
                     },
                   ),
+                  const SizedBox(height: 32.0), // Optional spacing below the content
+                  // Footer
+                  Footer(),
                 ],
               ),
             ),
           ),
-          Footer(),
         ],
       ),
     );
