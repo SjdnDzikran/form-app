@@ -74,6 +74,12 @@ final TextStyle toggleOptionTextStyle = GoogleFonts.rubik(
   fontWeight: FontWeight.bold,
 );
 
+final TextStyle disabledToggleTextStyle = GoogleFonts.rubik(
+  fontSize: 14.0,
+  fontWeight: FontWeight.normal,
+  color: Colors.white,
+);
+
 // Navigation Button Text Style
 final TextStyle buttonTextStyle = GoogleFonts.rubik(
   fontSize: 18.0,

@@ -108,11 +108,7 @@ class _ToggleableNumberedButtonListState extends State<ToggleableNumberedButtonL
                   ),
                   child: Text(
                     'Tidak ada',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    style: disabledToggleTextStyle,
                   ),
                 ),
           ],
@@ -133,7 +129,7 @@ class _ToggleableNumberedButtonListState extends State<ToggleableNumberedButtonL
              } else {
                buttonBackgroundColor = Colors.white;
              }
-             final Color buttonTextColor = isSelected ? Colors.white : currentButtonTextColor;
+            final Color buttonTextColor = isSelected ? Colors.white : currentButtonTextColor;
 
             // --- Wrap with Expanded ---
             return Expanded(
@@ -157,10 +153,8 @@ class _ToggleableNumberedButtonListState extends State<ToggleableNumberedButtonL
                   child: Center( // Center the text within the fixed-size container
                     child: Text(
                       itemNumber.toString(),
-                      style: TextStyle(
+                      style: toggleOptionTextStyle.copyWith(
                         color: buttonTextColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
                       ),
                     ),
                   ),
