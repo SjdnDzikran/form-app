@@ -37,7 +37,7 @@ class _NumberedButtonListState extends State<NumberedButtonList> {
             final isSelected = index == widget.selectedIndex;
             return Expanded( // Use Expanded to make buttons take equal space
               child: GestureDetector(
-                onTap: () => widget.onItemSelected(index),
+                onTap: () => widget.onItemSelected(index + 1),
                 child: Container(
                   height: 35, // Maintain height
                   width: 35, // Set a fixed width for the button
