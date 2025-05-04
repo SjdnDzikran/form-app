@@ -172,6 +172,43 @@ class FormNotifier extends StateNotifier<FormData> {
     state = state.copyWith(deskripsiKeseluruhan: lines);
   }
 
+  // New update methods for Page Five One
+  void updateAirbagSelectedIndex(int? index) {
+    state = state.copyWith(airbagSelectedIndex: index);
+  }
+
+  void updateAirbagIsEnabled(bool? enabled) {
+    state = state.copyWith(airbagIsEnabled: enabled);
+  }
+
+  void updateSistemAudioSelectedIndex(int? index) {
+    state = state.copyWith(sistemAudioSelectedIndex: index);
+  }
+
+  void updateSistemAudioIsEnabled(bool? enabled) {
+    state = state.copyWith(sistemAudioIsEnabled: enabled);
+  }
+
+  void updatePowerWindowSelectedIndex(int? index) {
+    state = state.copyWith(powerWindowSelectedIndex: index);
+  }
+
+  void updatePowerWindowIsEnabled(bool? enabled) {
+    state = state.copyWith(powerWindowIsEnabled: enabled);
+  }
+
+  void updateSistemAcSelectedIndex(int? index) {
+    state = state.copyWith(sistemAcSelectedIndex: index);
+  }
+
+  void updateSistemAcIsEnabled(bool? enabled) {
+    state = state.copyWith(sistemAcIsEnabled: enabled);
+  }
+
+  void updateFiturCatatan(String? text) {
+    state = state.copyWith(fiturCatatan: text);
+  }
+
   void updateRepairEstimations(List<Map<String, String>> estimations) {
     state = state.copyWith(repairEstimations: estimations);
   }
@@ -225,6 +262,15 @@ extension on FormData {
     List<String>? keteranganMesin,
     List<String>? deskripsiKeseluruhan,
     List<Map<String, String>>? repairEstimations,
+    int? airbagSelectedIndex,
+    bool? airbagIsEnabled,
+    int? sistemAudioSelectedIndex,
+    bool? sistemAudioIsEnabled,
+    int? powerWindowSelectedIndex,
+    bool? powerWindowIsEnabled,
+    int? sistemAcSelectedIndex,
+    bool? sistemAcIsEnabled,
+    String? fiturCatatan,
   }) {
     return FormData(
       namaInspektor: namaInspektor ?? this.namaInspektor,
@@ -269,6 +315,15 @@ extension on FormData {
       keteranganMesin: keteranganMesin ?? this.keteranganMesin,
       deskripsiKeseluruhan: deskripsiKeseluruhan ?? this.deskripsiKeseluruhan,
       repairEstimations: repairEstimations ?? this.repairEstimations,
+      airbagSelectedIndex: airbagSelectedIndex ?? this.airbagSelectedIndex,
+      airbagIsEnabled: airbagIsEnabled ?? this.airbagIsEnabled,
+      sistemAudioSelectedIndex: sistemAudioSelectedIndex ?? this.sistemAudioSelectedIndex,
+      sistemAudioIsEnabled: sistemAudioIsEnabled ?? this.sistemAudioIsEnabled,
+      powerWindowSelectedIndex: powerWindowSelectedIndex ?? this.powerWindowSelectedIndex,
+      powerWindowIsEnabled: powerWindowIsEnabled ?? this.powerWindowIsEnabled,
+      sistemAcSelectedIndex: sistemAcSelectedIndex ?? this.sistemAcSelectedIndex,
+      sistemAcIsEnabled: sistemAcIsEnabled ?? this.sistemAcIsEnabled,
+      fiturCatatan: fiturCatatan ?? this.fiturCatatan,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_app/widgets/common_layout.dart';
+import 'package:form_app/widgets/heading_one.dart';
 import 'package:form_app/widgets/navigation_button_row.dart';
 import 'package:form_app/widgets/page_number.dart';
 import 'package:form_app/widgets/page_title.dart';
@@ -19,11 +20,11 @@ class PageFiveFive extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  PageNumber(data: '5.5/9'),
+                  PageNumber(data: '5/9'),
                   const SizedBox(height: 8.0),
-                  PageTitle(data: 'Page Five - Part 5'), // Placeholder Title
+                  PageTitle(data: 'Penilaian'),
                   const SizedBox(height: 24.0),
-                  const Center(child: Text('Page Five Part 5 Content Goes Here')),
+                  const HeadingOne(text: 'Ban dan Kaki-kaki'),
                   const SizedBox(height: 32.0),
                   NavigationButtonRow(
                     onBackPressed: () => Navigator.pop(context),

@@ -54,6 +54,17 @@ class FormData {
   List<String> keteranganMesin;
   List<String> deskripsiKeseluruhan;
 
+  // New fields for Page Five One
+  int? airbagSelectedIndex;
+  bool? airbagIsEnabled;
+  int? sistemAudioSelectedIndex;
+  bool? sistemAudioIsEnabled;
+  int? powerWindowSelectedIndex;
+  bool? powerWindowIsEnabled;
+  int? sistemAcSelectedIndex;
+  bool? sistemAcIsEnabled;
+  String? fiturCatatan;
+
   // New field for repair estimations
   List<Map<String, String>> repairEstimations;
 
@@ -100,6 +111,15 @@ class FormData {
     List<String>? keteranganMesin,
     List<String>? deskripsiKeseluruhan,
     List<Map<String, String>>? repairEstimations,
+    this.airbagSelectedIndex,
+    this.airbagIsEnabled,
+    this.sistemAudioSelectedIndex,
+    this.sistemAudioIsEnabled,
+    this.powerWindowSelectedIndex,
+    this.powerWindowIsEnabled,
+    this.sistemAcSelectedIndex,
+    this.sistemAcIsEnabled,
+    this.fiturCatatan,
 
   }) : keteranganEksterior = keteranganEksterior ?? [],
        keteranganInterior = keteranganInterior ?? [],

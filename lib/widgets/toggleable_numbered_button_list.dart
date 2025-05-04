@@ -84,7 +84,7 @@ class _ToggleableNumberedButtonListState extends State<ToggleableNumberedButtonL
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   visualDensity: VisualDensity.compact,
                   side: BorderSide(
-                    color: _isEnabled ? toggleOptionSelectedLengkapColor : Colors.grey.shade400,
+                    color: toggleOptionSelectedLengkapColor,
                     width: 2,
                   ),
                   shape: RoundedRectangleBorder(
@@ -151,7 +151,7 @@ class _ToggleableNumberedButtonListState extends State<ToggleableNumberedButtonL
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
                       color: effectiveBorderColor,
-                      width: 1.5, // Use 1.5 or 2 based on desired look
+                      width: 2, // Use 1.5 or 2 based on desired look
                     ),
                   ),
                   child: Center( // Center the text within the fixed-size container
