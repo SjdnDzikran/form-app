@@ -43,7 +43,7 @@ class _ToggleableNumberedButtonListState extends State<ToggleableNumberedButtonL
       });
       widget.onEnabledChanged(_isEnabled);
       if (!_isEnabled) {
-        widget.onItemSelected(-1);
+        widget.onItemSelected(widget.valueWhenDisabled); // Use the valueWhenDisabled property
       }
     }
   }

@@ -12,7 +12,7 @@ import 'package:form_app/widgets/toggleable_numbered_button_list.dart';
 import 'package:form_app/widgets/expandable_text_field.dart';
 
 class PageFiveOne extends ConsumerStatefulWidget {
-  const PageFiveOne({Key? key}) : super(key: key);
+  const PageFiveOne({super.key});
 
   @override
   ConsumerState<PageFiveOne> createState() => _PageFiveOneState();
