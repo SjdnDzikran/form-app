@@ -34,11 +34,13 @@ class PageNine extends StatelessWidget {
                       // TODO: Implement final submission or navigation
                     },
                   ),
+                  const SizedBox(height: 32.0), // Optional spacing below the content
+                  // Footer
+                  Footer(),
                 ],
               ),
             ),
           ),
-          Footer(),
         ],
       ),
     );

@@ -54,6 +54,74 @@ class FormData {
   List<String> keteranganMesin;
   List<String> deskripsiKeseluruhan;
 
+  // New fields for Page Five One
+  int? airbagSelectedIndex;
+  bool? airbagIsEnabled;
+  int? sistemAudioSelectedIndex;
+  bool? sistemAudioIsEnabled;
+  int? powerWindowSelectedIndex;
+  bool? powerWindowIsEnabled;
+  int? sistemAcSelectedIndex;
+  bool? sistemAcIsEnabled;
+  String? fiturCatatan;
+
+  // New fields for Page Five Two
+  int? getaranMesinSelectedIndex;
+  bool? getaranMesinIsEnabled;
+  int? suaraMesinSelectedIndex;
+  bool? suaraMesinIsEnabled;
+  int? transmisiSelectedIndex;
+  bool? transmisiIsEnabled;
+  int? pompaPowerSteeringSelectedIndex;
+  bool? pompaPowerSteeringIsEnabled;
+  int? coverTimingChainSelectedIndex;
+  bool? coverTimingChainIsEnabled;
+  int? oliPowerSteeringSelectedIndex;
+  bool? oliPowerSteeringIsEnabled;
+  int? accuSelectedIndex;
+  bool? accuIsEnabled;
+  int? kompressorAcSelectedIndex;
+  bool? kompressorAcIsEnabled;
+  int? fanSelectedIndex;
+  bool? fanIsEnabled;
+  int? selangSelectedIndex;
+  bool? selangIsEnabled;
+  int? karterOliSelectedIndex;
+  bool? karterOliIsEnabled;
+  int? oilRemSelectedIndex;
+  bool? oilRemIsEnabled;
+  int? kabelSelectedIndex;
+  bool? kabelIsEnabled;
+  int? kondensorSelectedIndex;
+  bool? kondensorIsEnabled;
+  int? radiatorSelectedIndex;
+  bool? radiatorIsEnabled;
+  int? cylinderHeadSelectedIndex;
+  bool? cylinderHeadIsEnabled;
+  int? oliMesinSelectedIndex;
+  bool? oliMesinIsEnabled;
+  int? airRadiatorSelectedIndex;
+  bool? airRadiatorIsEnabled;
+  int? coverKlepSelectedIndex;
+  bool? coverKlepIsEnabled;
+  int? alternatorSelectedIndex;
+  bool? alternatorIsEnabled;
+  int? waterPumpSelectedIndex;
+  bool? waterPumpIsEnabled;
+  int? beltSelectedIndex;
+  bool? beltIsEnabled;
+  int? oliTransmisiSelectedIndex;
+  bool? oliTransmisiIsEnabled;
+  int? cylinderBlockSelectedIndex;
+  bool? cylinderBlockIsEnabled;
+  int? bushingBesarSelectedIndex;
+  bool? bushingBesarIsEnabled;
+  int? bushingKecilSelectedIndex;
+  bool? bushingKecilIsEnabled;
+  int? tutupRadiatorSelectedIndex;
+  bool? tutupRadiatorIsEnabled;
+  String? mesinCatatan;
+
   // New field for repair estimations
   List<Map<String, String>> repairEstimations;
 
@@ -100,6 +168,70 @@ class FormData {
     List<String>? keteranganMesin,
     List<String>? deskripsiKeseluruhan,
     List<Map<String, String>>? repairEstimations,
+    this.airbagSelectedIndex,
+    this.airbagIsEnabled,
+    this.sistemAudioSelectedIndex,
+    this.sistemAudioIsEnabled,
+    this.powerWindowSelectedIndex,
+    this.powerWindowIsEnabled,
+    this.sistemAcSelectedIndex,
+    this.sistemAcIsEnabled,
+    this.fiturCatatan,
+    this.getaranMesinSelectedIndex,
+    this.getaranMesinIsEnabled,
+    this.suaraMesinSelectedIndex,
+    this.suaraMesinIsEnabled,
+    this.transmisiSelectedIndex,
+    this.transmisiIsEnabled,
+    this.pompaPowerSteeringSelectedIndex,
+    this.pompaPowerSteeringIsEnabled,
+    this.coverTimingChainSelectedIndex,
+    this.coverTimingChainIsEnabled,
+    this.oliPowerSteeringSelectedIndex,
+    this.oliPowerSteeringIsEnabled,
+    this.accuSelectedIndex,
+    this.accuIsEnabled,
+    this.kompressorAcSelectedIndex,
+    this.kompressorAcIsEnabled,
+    this.fanSelectedIndex,
+    this.fanIsEnabled,
+    this.selangSelectedIndex,
+    this.selangIsEnabled,
+    this.karterOliSelectedIndex,
+    this.karterOliIsEnabled,
+    this.oilRemSelectedIndex,
+    this.oilRemIsEnabled,
+    this.kabelSelectedIndex,
+    this.kabelIsEnabled,
+    this.kondensorSelectedIndex,
+    this.kondensorIsEnabled,
+    this.radiatorSelectedIndex,
+    this.radiatorIsEnabled,
+    this.cylinderHeadSelectedIndex,
+    this.cylinderHeadIsEnabled,
+    this.oliMesinSelectedIndex,
+    this.oliMesinIsEnabled,
+    this.airRadiatorSelectedIndex,
+    this.airRadiatorIsEnabled,
+    this.coverKlepSelectedIndex,
+    this.coverKlepIsEnabled,
+    this.alternatorSelectedIndex,
+    this.alternatorIsEnabled,
+    this.waterPumpSelectedIndex,
+    this.waterPumpIsEnabled,
+    this.beltSelectedIndex,
+    this.beltIsEnabled,
+    this.oliTransmisiSelectedIndex,
+    this.oliTransmisiIsEnabled,
+    this.cylinderBlockSelectedIndex,
+    this.cylinderBlockIsEnabled,
+    this.bushingBesarSelectedIndex,
+    this.bushingBesarIsEnabled,
+    this.bushingKecilSelectedIndex,
+    this.bushingKecilIsEnabled,
+    this.tutupRadiatorSelectedIndex,
+    this.tutupRadiatorIsEnabled,
+    this.mesinCatatan,
 
   }) : keteranganEksterior = keteranganEksterior ?? [],
        keteranganInterior = keteranganInterior ?? [],
