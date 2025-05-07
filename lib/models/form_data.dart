@@ -23,7 +23,7 @@ class FormData {
   String? kunciSerep;
   String? bukuManual;
   String? banSerep;
-  String? bpkp;
+  String? bpkb;
   String? dongkrak;
   String? toolkit;
   String? noRangka;
@@ -125,8 +125,8 @@ class FormData {
   // New fields for Page Five Three
   int? stirSelectedValue;
   bool? stirIsEnabled;
-  int? remTonganSelectedValue;
-  bool? remTonganIsEnabled;
+  int? remTanganSelectedValue;
+  bool? remTanganIsEnabled;
   int? pedalSelectedValue;
   bool? pedalIsEnabled;
   int? switchWiperSelectedValue;
@@ -273,6 +273,42 @@ class FormData {
   bool? linkStabilizerIsEnabled;
   List<String> banDanKakiKakiCatatanList;
 
+  // New fields for Page Five Six (Test Drive)
+  int? bunyiGetaranSelectedValue;
+  bool? bunyiGetaranIsEnabled;
+  int? performaStirSelectedValue;
+  bool? performaStirIsEnabled;
+  int? perpindahanTransmisiSelectedValue;
+  bool? perpindahanTransmisiIsEnabled;
+  int? stirBalanceSelectedValue;
+  bool? stirBalanceIsEnabled;
+  int? performaSuspensiSelectedValue;
+  bool? performaSuspensiIsEnabled;
+  int? performaKoplingSelectedValue;
+  bool? performaKoplingIsEnabled;
+  int? rpmSelectedValue;
+  bool? rpmIsEnabled;
+  List<String> testDriveCatatanList;
+
+  // New fields for Page Five Seven (Tools Test)
+  int? tebalCatBodyDepanSelectedValue;
+  bool? tebalCatBodyDepanIsEnabled;
+  int? tebalCatBodyKiriSelectedValue;
+  bool? tebalCatBodyKiriIsEnabled;
+  int? temperatureAcMobilSelectedValue;
+  bool? temperatureAcMobilIsEnabled;
+  int? tebalCatBodyKananSelectedValue;
+  bool? tebalCatBodyKananIsEnabled;
+  int? tebalCatBodyBelakangSelectedValue;
+  bool? tebalCatBodyBelakangIsEnabled;
+  int? obdScannerSelectedValue;
+  bool? obdScannerIsEnabled;
+  int? tebalCatBodyAtapSelectedValue;
+  bool? tebalCatBodyAtapIsEnabled;
+  int? testAccuSelectedValue;
+  bool? testAccuIsEnabled;
+  List<String> toolsTestCatatanList;
+
 
   // New field for repair estimations
   List<Map<String, String>> repairEstimations;
@@ -297,7 +333,7 @@ class FormData {
     this.kunciSerep,
     this.bukuManual,
     this.banSerep,
-    this.bpkp,
+    this.bpkb,
     this.dongkrak,
     this.toolkit,
     this.noRangka,
@@ -386,8 +422,8 @@ class FormData {
     List<String>? mesinCatatanList,
     this.stirSelectedValue,
     this.stirIsEnabled,
-    this.remTonganSelectedValue,
-    this.remTonganIsEnabled,
+    this.remTanganSelectedValue,
+    this.remTanganIsEnabled,
     this.pedalSelectedValue,
     this.pedalIsEnabled,
     this.switchWiperSelectedValue,
@@ -529,6 +565,39 @@ class FormData {
     this.linkStabilizerSelectedValue,
     this.linkStabilizerIsEnabled,
     List<String>? banDanKakiKakiCatatanList,
+    this.bunyiGetaranSelectedValue,
+    this.bunyiGetaranIsEnabled,
+    this.performaStirSelectedValue,
+    this.performaStirIsEnabled,
+    this.perpindahanTransmisiSelectedValue,
+    this.perpindahanTransmisiIsEnabled,
+    this.stirBalanceSelectedValue,
+    this.stirBalanceIsEnabled,
+    this.performaSuspensiSelectedValue,
+    this.performaSuspensiIsEnabled,
+    this.performaKoplingSelectedValue,
+    this.performaKoplingIsEnabled,
+    this.rpmSelectedValue,
+    this.rpmIsEnabled,
+    List<String>? testDriveCatatanList,
+    // New fields for Page Five Seven (Tools Test)
+    this.tebalCatBodyDepanSelectedValue,
+    this.tebalCatBodyDepanIsEnabled,
+    this.tebalCatBodyKiriSelectedValue,
+    this.tebalCatBodyKiriIsEnabled,
+    this.temperatureAcMobilSelectedValue,
+    this.temperatureAcMobilIsEnabled,
+    this.tebalCatBodyKananSelectedValue,
+    this.tebalCatBodyKananIsEnabled,
+    this.tebalCatBodyBelakangSelectedValue,
+    this.tebalCatBodyBelakangIsEnabled,
+    this.obdScannerSelectedValue,
+    this.obdScannerIsEnabled,
+    this.tebalCatBodyAtapSelectedValue,
+    this.tebalCatBodyAtapIsEnabled,
+    this.testAccuSelectedValue,
+    this.testAccuIsEnabled,
+    List<String>? toolsTestCatatanList,
 
   }) : keteranganEksterior = eksteriorCatatanList ?? [],
        keteranganInterior = keteranganInterior ?? [],
@@ -539,7 +608,9 @@ class FormData {
        mesinCatatanList = mesinCatatanList ?? [],
        interiorCatatanList = interiorCatatanList ?? [],
        eksteriorCatatanList = eksteriorCatatanList ?? [],
-       banDanKakiKakiCatatanList = banDanKakiKakiCatatanList ?? [];
+       banDanKakiKakiCatatanList = banDanKakiKakiCatatanList ?? [],
+       testDriveCatatanList = testDriveCatatanList ?? [],
+       toolsTestCatatanList = toolsTestCatatanList ?? [];
 
   // Add methods to update data if needed, or update directly
 }

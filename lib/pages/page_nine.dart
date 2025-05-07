@@ -8,7 +8,8 @@ import 'package:form_app/widgets/navigation_button_row.dart';
 import 'package:form_app/widgets/page_number.dart';
 import 'package:form_app/widgets/page_title.dart';
 import 'package:form_app/widgets/footer.dart';
-import 'package:form_app/widgets/custom_checkbox_tile.dart';
+import 'package:form_app/widgets/form_confirmation.dart';
+import 'package:form_app/pages/finished.dart';
 
 // Placeholder for Page Nine
 class PageNine extends ConsumerStatefulWidget {
@@ -20,7 +21,6 @@ class PageNine extends ConsumerStatefulWidget {
 
 class _PageNineState extends ConsumerState<PageNine> {
   bool _isChecked = false;
-  bool _isLoading = false;
 
   Future<void> _submitForm() async {
     if (!_isChecked) {
@@ -33,27 +33,17 @@ class _PageNineState extends ConsumerState<PageNine> {
       return;
     }
 
-    setState(() {
-      _isLoading = true;
-    });
-
     try {
       final formData = ref.read(formProvider);
       final apiService = ApiService(); // Consider providing ApiService via Riverpod as well
 
-      // TODO: Before calling submitFormData, ensure all TODOs within ApiService.submitFormData are addressed
-      // For now, we call it as is.
-      await apiService.submitFormData(formData);
+       await apiService.submitFormData(formData);
 
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Formulir berhasil dikirim!'),
-          backgroundColor: Colors.green,
-        ),
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => FinishedPage()),
       );
-      // Optionally, navigate to a success page or clear the form
-      // Navigator.of(context).popUntil((route) => route.isFirst); // Example: Pop to first page
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -63,9 +53,7 @@ class _PageNineState extends ConsumerState<PageNine> {
         ),
       );
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      // Removed loading state reset
     }
   }
 
@@ -88,7 +76,7 @@ class _PageNineState extends ConsumerState<PageNine> {
                     style: labelStyle.copyWith(fontWeight: FontWeight.w300), // Corrected font weight
                   ),
                   const SizedBox(height: 16.0), // Added spacing
-                  CustomCheckboxTile(
+                  FormConfirmation(
                     label: 'Data yang saya isi telah sesuai',
                     initialValue: _isChecked,
                     onChanged: (bool newValue) {
@@ -101,13 +89,11 @@ class _PageNineState extends ConsumerState<PageNine> {
                   NavigationButtonRow(
                     onBackPressed: () => Navigator.pop(context),
                     isLastPage: true,
-                    onNextPressed: _isLoading ? () {} : _submitForm, // Disable button when loading
-                    // TODO: Pass _isLoading to NavigationButtonRow if it supports a loading state for the button
+                    onNextPressed: _submitForm,
+                    isFormConfirmed: _isChecked,
+                    // Removed isLoading parameter
                   ),
-                  if (_isLoading) ...[
-                    const SizedBox(height: 16),
-                    const Center(child: CircularProgressIndicator()),
-                  ],
+                  // Removed loading indicator
                   const SizedBox(
                     height: 32.0,
                   ), // Optional spacing below the content
